@@ -1,16 +1,14 @@
 "use client";
+import { NavLinkType, navLinks } from "@/constants/NavLinks";
 import { Popover } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 import React, { useState } from "react";
-const navLinks: any = [
-  { title: "About", to: "/about" },
-  { title: "Articles", to: "/posts" },
-  { title: "Projects", to: "/projects" },
-];
-function PopOver() {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const openPopover = () => {
+function PopOver() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const openPopover: () => void = () => {
     setIsOpen(true);
   };
 
@@ -19,7 +17,6 @@ function PopOver() {
   };
   return (
     <div>
-      {" "}
       <Popover>
         {({ open }) => (
           <>
@@ -55,17 +52,17 @@ function PopOver() {
 
                 <nav className="mt-4" aria-label="Main Menu">
                   <ul className="divide-y dark:divide-gray-600">
-                    {navLinks.map((link: any) => (
-                      <li key={link.to}>
-                        <a
-                          href={`/api`}
+                    {navLinks.map((link: NavLinkType, index: number) => (
+                      <li key={index}>
+                        <Link
+                          href={link.route}
                           className="py-2.5 block font-normal dark:text-gray-50 motion-safe:transition"
                           onClick={() => {
-                            closePopover(); // Close the popover when a link is clicked
+                            closePopover();
                           }}
                         >
                           {link.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
