@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import PopOver from "./PopOver";
-import { NavLinkType, navLinks } from "@/constants/NavLinks";
+import { type NavLinkType, navLinks } from "@/constants/NavLinks";
 
 function Header() {
   return (
